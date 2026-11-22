@@ -12,12 +12,7 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
-  schedule:
-    - cron: "41 3 * * 5"
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -28,7 +23,7 @@ jobs:
     #   - https://gh.io/using-larger-runners (GitHub.com only)
     # Consider using larger runners or machines with greater resources for possible analysis time improvements.
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 30 }}
     permissions:
       # required for all workflows
       security-events: write
